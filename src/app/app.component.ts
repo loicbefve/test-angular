@@ -6,5 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'test-angular';
+  isAuth = false;
+
+  appareils = [
+    {
+      name: 'Machine à laver',
+      status: 'allumé'
+    }, {
+      name: 'Télévision',
+      status: 'éteint'
+    }, {
+      name: 'Ordinateur',
+      status: 'éteint'
+    }
+  ];
+
+  constructor() {
+    setTimeout(
+      () => {
+        this.isAuth = true;
+      }, 4000
+    );
+  }
+
+  onAllumer() {
+    console.log('Ok allumé');
+  }
 }
