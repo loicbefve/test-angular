@@ -5,8 +5,20 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   isAuth = false;
+
+  lastUpdate = new Promise(
+    (resolve) => {
+      const date = new Date();
+      setTimeout(
+        () => {
+          resolve(date);
+        }, 2000
+      );
+    }
+  );
 
   appareils = [
     {
@@ -29,7 +41,7 @@ export class AppComponent {
     );
   }
 
-  onAllumer() {
+  static onAllumer() {
     console.log('Ok allumé');
   }
 }
