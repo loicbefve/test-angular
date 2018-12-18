@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AppareilService} from './services/appareil.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   isAuth = false;
 
   lastUpdate = new Promise(
@@ -20,20 +21,10 @@ export class AppComponent {
     }
   );
 
-  appareils = [
-    {
-      name: 'Machine à laver',
-      status: 'allumé'
-    }, {
-      name: 'Télévision',
-      status: 'éteint'
-    }, {
-      name: 'Ordinateur',
-      status: 'éteint'
-    }
-  ];
+  appareils: any[];
 
-  constructor() {
+
+  constructor(private appareilService: AppareilService) {
     setTimeout(
       () => {
         this.isAuth = true;
@@ -41,7 +32,15 @@ export class AppComponent {
     );
   }
 
-  static onAllumer() {
-    console.log('Ok allumé');
+  ngOnInit() {
+    this.appareils = this.appareilService.appareils;
+  }
+
+  onAllumer() {
+    this.appareilService.switchOnAll();
+  }
+
+  onEteindre() {
+    this.appareilService.switchOffAll();
   }
 }
