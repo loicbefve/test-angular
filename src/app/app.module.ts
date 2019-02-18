@@ -18,7 +18,6 @@ import {EditAppareilComponent} from './edit-appareil/edit-appareil.component';
 import {UserListComponent} from './user-list/user-list.component';
 import {UserService} from './services/User.service';
 import {NewUserComponent} from './new-user/new-user.component';
-
 const appRoutes: Routes = [
   {path: 'appareils', canActivate: [AuthGuard], component: AppareilViewComponent},
   {path: 'appareils/:id', canActivate: [AuthGuard], component: SingleAppareilComponent},
